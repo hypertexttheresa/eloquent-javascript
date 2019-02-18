@@ -4,6 +4,7 @@
 */
 
 function isEven(number) {
+  // or: number = Math.abs(number); 
   if (number < 0 ) {
     number *= -1;
   }
