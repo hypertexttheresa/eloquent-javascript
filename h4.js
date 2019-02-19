@@ -16,19 +16,19 @@ var range = function(start, end, step = start < end ? 1 : -1) {
     if (start > end) {
         for (var i = start; i >= end; i += step) {
             output.push(i);
-        }    
+        }
     } else {
         for (var i = start; i <= end; i += step) {
             output.push(i);
         }
     }
-	
+
 	return output;
 }
 
 /**
  * https://eloquentjavascript.net/04_data.html#i_6xTmjj4Rf5
- * The first, reverseArray, takes an array as argument and produces a new array that has the same elements in the inverse order. The second, reverseArrayInPlace, does what the reverse method does: it modifies the array given as argument by reversing its elements. 
+ * The first, reverseArray, takes an array as argument and produces a new array that has the same elements in the inverse order. The second, reverseArrayInPlace, does what the reverse method does: it modifies the array given as argument by reversing its elements.
  */
 function reverseArray(array) {
     var last;
@@ -38,7 +38,7 @@ function reverseArray(array) {
         last = array.pop()
         newArray.push(last);
     }
-    
+
     return newArray;
 }
 
@@ -50,16 +50,16 @@ function reverseArrayInPlace(array) {
     for (var i = 0; i < arrayLengthHalf; i++) {
         first = array[i];
         second = array[arrayLength - i - 1];
-        
+
         array[i] = second;
         array[arrayLength - i - 1] = first;
-        
+
     }
     return;
 }
 
 /**
- * https://eloquentjavascript.net/04_data.html
+  * https://eloquentjavascript.net/04_data.html#i_nSTX34CM1M
  * Write a function arrayToList that builds up a list structure like the one shown when given [1, 2, 3] as argument. Also write a listToArray function that produces an array from a list.
  */
 
@@ -85,7 +85,7 @@ function listToArray(list) {
 }
 
 /**
- * https://eloquentjavascript.net/04_data.html
+ * https://eloquentjavascript.net/04_data.html#i_nSTX34CM1M
  * Then add a helper function prepend, which takes an element and a list and creates a new list that adds the element to the front of the input list, and nth, which takes a list and a number and returns the element at the given position in the list
  */
 function prepend(value, list) {
@@ -103,7 +103,7 @@ function nth(list, index) {
 }
 
 /**
- * https://eloquentjavascript.net/04_data.html
+ * https://eloquentjavascript.net/04_data.html#i_IJBU+aXOIC
  * Write a function deepEqual that takes two values and returns true only if they are the same value or are objects with the same properties
  */
 function deepEqual(object1, object2) {

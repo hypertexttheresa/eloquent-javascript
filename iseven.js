@@ -1,5 +1,5 @@
 /**
-* https://eloquentjavascript.net/03_functions.html
+* https://eloquentjavascript.net/03_functions.html#i_jxl1p970Fy
 * Define a recursive function isEven to define whether a positive whole number is even or odd
 */
 

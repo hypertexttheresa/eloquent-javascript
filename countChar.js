@@ -1,5 +1,5 @@
 /**
-* https://eloquentjavascript.net/03_functions.html
+* https://eloquentjavascript.net/03_functions.html#i_3rsiDgC2do
 * Write a function countBs that takes a string as its only argument and returns a number that indicates how many uppercase “B” characters there are in the string.
 */
 
