@@ -10,3 +10,20 @@ for (let entry of JOURNAL) {
 }
 
 ["A", "B"].forEach(l => console.log(l));
+
+/* Of the following two functions, the latter seems to be less readable to me.
+The book seems to prefer the use of abstractions in most cases.
+Would you agree that in this case it would be less useful?
+ */
+function every(array, test) {
+  for(var i = 0; i < array.length; i++) {
+    if(!test(array[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function every(array, test) {
+  return !array.some(value => !test(value));
+}

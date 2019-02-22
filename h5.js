@@ -49,3 +49,26 @@ function every(array, test) {
 function every(array, test) {
   return !array.some(value => !test(value));
 }
+
+/**
+ * https://eloquentjavascript.net/05_higher_order.html#i_4ccl4J1nOw
+ * Write a function that computes the dominant writing direction in a string of text.
+ */
+
+function dominantDirection(text) {
+  let scripts = countBy(text, char => {
+     let script = characterScript(char.codePointAt(0));
+     return script ? script.direction : "none";
+   }).filter(({name}) => name != "none");
+
+  let total = scripts.reduce((n, {count}) => n + count, 0);
+  if (total == 0) return "No scripts found";
+
+  let dominantWritingLang = scripts.reduce(
+    function(prev, current) {
+      return current.count > prev.count ? current : prev;
+    }
+  );
+
+  return dominantWritingLang.name
+}
