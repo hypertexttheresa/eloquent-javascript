@@ -8,7 +8,7 @@ If you want to pass `this` explicitly, you can use a function’s call(this, nor
 Since each function has its own this binding, whose value depends on the way it is called, you cannot refer to the this of the wrapping scope in a regular function defined with the function keyword.
 
 
-class declaration:
+class declaration: */
 class Rabbit {
   constructor(type) {
     this.type = type;
@@ -17,6 +17,20 @@ class Rabbit {
     console.log(`The ${this.type} rabbit says '${line}'`);
   }
 }
+/*
 These only allow methods; properties have to be added to the prototype
+static methods are stored on the constructor
 
+proptotypes
+====
+prototypes are ordened in a tree, with Object.prototype as entity behind almost all objects. Use instanceof to see through inherited types.
+As such, properties that exist in a prototype can be overridden.
+use the hasOwnProperty() or Map class to use an object as a map.
+inheritance through subclasses, parent is called 'superclasss', drawback is that it creates class hierarchies that get entangled.
+
+symbols, iterators
+===
+Symbols are values created with the Symbol function. Unlike strings, newly created symbols are unique.
+
+a method named with the Symbol.iterator symbol  should return an object that provides a second interface, iterator.  It has a next method that returns the next result.
 */
