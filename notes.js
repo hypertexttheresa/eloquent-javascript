@@ -1,4 +1,49 @@
-/* H6
+/*
+H1 - 4
+===
+bindings + values -> environment
+    |
+expression
+    |
+statement
+    |
+program
+
+Functions: side-effects vs. return
+Operators:
+*/
+//unary
+typeof varName;
+//binary
+2 * 2; var1 && var2;
+//ternary
+var1 ? result1 : other_result;
+
+/*
+short-circuit evaluation
+*/
+a || b; // if a then a, else b
+a && b // !a ? a : b
+/*
+Scopes: global - 'var'; local - within a function or bloc 'let';
+Lexical scoping: local scope has access to outer scopes.
+Call stack: where computer stores its flow of control, the current context is stored on top of this.
+Closure: reference a specific instance of a local binding in an enclosing scope
+Recursion: A function can call itself as log as the stack doesn't overflow -> often most useful/efficient when exploring several branches
+Properties: value.x, or value[x] to access property. The latter gets evaluated while the first is a precise property name
+Immutability: binding vs. value itself
+*/
+
+/*
+H5 Functions
+===
+abstractions: smaller functions with describing names
+higher-order functions: functions that operate on functions
+standard array methods: forEach, map, filter, reduce
+abstract vs. fast computation: abstract is more readable code, but for example map and filter methods build new arrays.
+*/
+
+/* H6 Objects
 ====
 Interfaces: limited sets of functions or bindings that provide useful functionality at a more abstract level, hiding their precise implementation.
 Such program pieces are modeled using objects. Their interface consists of a specific set of methods and properties. Properties that are part of the interface are called public. The others, which outside code should not be touching, are called private.
