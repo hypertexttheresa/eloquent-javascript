@@ -98,4 +98,5 @@ H10 Modules
 NPM is two things: an online service where one can download (and upload) packages and a program (bundled with Node.js) that helps you install and manage them.
 The relations between modules are called dependencies.
 We can wrap the module’s code in a function and use that function’s scope as module scope. -> CommonJS modules
+Because the loader wraps the module code in a function, modules automatically get their own local scope. All they have to do is call require to access their dependencies and put their interface in the object bound to exports.
 */
