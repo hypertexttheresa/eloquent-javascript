@@ -34,3 +34,14 @@ Symbols are values created with the Symbol function. Unlike strings, newly creat
 
 a method named with the Symbol.iterator symbol  should return an object that provides a second interface, iterator.  It has a next method that returns the next result.
 */
+
+/*
+
+H8
+===
+
+In strict mode the this binding holds the value undefined in functions that are not called as methods.
+Unwinding the stack: when throwing an exception the program jumps out of not just the current function but also its callers, all the way down to the first call that started the current executio
+Error is a standard JavaScript constructor that creates an object with a message property and a stack property containing the stack trace
+To help address the unpredictable control flow caused by exceptions, finally blocks can be used to ensure that a piece of code always runs when a block finishes.
+*/
