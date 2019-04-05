@@ -82,11 +82,20 @@ a method named with the Symbol.iterator symbol  should return an object that pro
 
 /*
 
-H8
+H8 Debugging
 ===
 
 In strict mode the this binding holds the value undefined in functions that are not called as methods.
 Unwinding the stack: when throwing an exception the program jumps out of not just the current function but also its callers, all the way down to the first call that started the current executio
 Error is a standard JavaScript constructor that creates an object with a message property and a stack property containing the stack trace
 To help address the unpredictable control flow caused by exceptions, finally blocks can be used to ensure that a piece of code always runs when a block finishes.
+
+*/
+
+/*
+H10 Modules
+===
+NPM is two things: an online service where one can download (and upload) packages and a program (bundled with Node.js) that helps you install and manage them.
+The relations between modules are called dependencies.
+We can wrap the module’s code in a function and use that function’s scope as module scope. -> CommonJS modules
 */
