@@ -29,7 +29,7 @@ class Vec {
 
 /*
 * https://eloquentjavascript.net/06_object.html#i_rpYp9Ou4LG
-* Write a class Vec that represents a vector in two-dimensional space
+* Write a class called Group (since Set is already taken). Like Set, it has add, delete, and has methods.
 */
 
 class Group {
@@ -56,3 +56,40 @@ class Group {
         return group;
     }
 }
+
+/*
+* https://eloquentjavascript.net/06_object.html#i_djD3XDJ27V
+* Make the Group class from the previous exercise iterable.
+*/
+class GroupIterator {
+    constructor(group) {
+        this.group = group;
+        this.groupValues = Object.values(group);
+        this.i = 0;
+    }
+
+    next() {
+        if (this.i === this.groupValues.length) {
+            return {done: true};
+        }
+
+        var value = this.group[this.groupValues[this.i]];
+        this.i++;
+
+        return {
+            value,
+            done: false
+        }
+    }
+}
+
+Group.prototype[Symbol.iterator] = function() {
+    return new GroupIterator(this);
+};
+
+/*
+* https://eloquentjavascript.net/06_object.html#i_wcWSnr9zHV
+* Can you think of a way to call hasOwnProperty on an object that has its own property by that name?
+*/
+
+Object.prototype.hasOwnProperty.call(map, "one");
