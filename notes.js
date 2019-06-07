@@ -100,3 +100,24 @@ The relations between modules are called dependencies.
 We can wrap the module’s code in a function and use that function’s scope as module scope. -> CommonJS modules
 Because the loader wraps the module code in a function, modules automatically get their own local scope. All they have to do is call require to access their dependencies and put their interface in the object bound to exports.
 */
+
+/*
+H11 Async
+===
+In a synchronous system, a thread is another running program whose execution may be interleaved with other programs by the operating system
+JS platforms (Node.js, browsers) use asynchronous models. Waiting for actions to finish is implicit in the synchronous model, while it is explicit, under our control, in the asynchronous one.
+One approach to asynchronous programming is to make functions that perform a slow action take an extra argument, a callback function.
+A callback function, also known as a higher-order function, is a function that is passed to another function as a parameter, and the callback function is called inside the other function
+A widely used convention is that the first argument to the callback is used to indicate that the action failed, and the second contains the value produced by the action when it was successful.
+In terms of what they can express, callbacks and promises are equivalent.
+Asynchronous behavior happens on its own empty function call stack. This is one of the reasons that, without promises, managing exceptions across asynchronous code is hard.
+
+*/
+
+
+/*
+H14 DOM
+===
+
+Node list returned by `getElementsByTagName` is _live_ - if you want a solid collection of nodes, you can convert the collection to a real arrawy by calling `Array.from`
+*/
