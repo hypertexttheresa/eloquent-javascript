@@ -119,5 +119,5 @@ Asynchronous behavior happens on its own empty function call stack. This is one 
 H14 DOM
 ===
 
-Node list returned by `getElementsByTagName` is _live_ - if you want a solid collection of nodes, you can convert the collection to a real arrawy by calling `Array.from`
+Node list returned by `getElementsByTagName` is _live_ - if you want a solid collection of nodes, you can convert the collection to a real array by calling `Array.from`
 */

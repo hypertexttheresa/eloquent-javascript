@@ -39,3 +39,88 @@ Given a data set of mountains, an array of objects with name, height, and place 
 	let mountainsDiv = document.querySelector('#mountains');
 	mountainsDiv.appendChild(table);
 </script>
+
+/*
+The document.getElementsByTagName method returns all child elements with a given tag name. Implement your own version of
+this as a function that takes a node and a string (the tag name) as arguments and returns an array containing all
+descendant element nodes with the given tag name
+*/
+
+
+
+<h1>Heading with a <span>span</span> element.</h1>
+<p>A paragraph with <span>one</span>, <span>two</span>
+	spans.</p>
+
+<script>
+	function byTagName(node, tagName) {
+		var tagName = tagName.toLowerCase();
+		elements = [];
+		if (node.nodeName.toLowerCase() === tagName) {
+			elements.push(node);
+		}
+
+		for (var i = 0; i <= node.childNodes.length - 1; i++) {
+			elements = elements.concat(byTagName(node.childNodes[i], tagName));
+		}
+
+		return elements
+	}
+
+	console.log(byTagName(document.body, "h1").length);
+	// → 1
+	console.log(byTagName(document.body, "span").length);
+	// → 3
+	let para = document.querySelector("p");
+	console.log(byTagName(para, "span").length);
+	// → 2
+  </script>
+
+/*
+Extend the cat animation defined earlier so that both the cat and his hat (<img src="img/hat.png">) orbit at opposite
+sides of the ellipse.
+*/
+
+<style>
+	body {
+		min-height: 600px
+	}
+</style>
+<img src="img/cat.png" id="cat" style="position: absolute">
+<img src="img/hat.png" id="hat" style="position: absolute">
+<img src="img/cat.png" id="cat2" style="position: absolute; top: 240px; left: 300px;">
+<img src="img/hat.png" id="hat2" style="position: absolute">
+
+<script>
+	// Both the cat and his hat (<img src="img/hat.png">) orbit at opposite sides of the ellipse.
+	let cat = document.querySelector("#cat");
+	let hat = document.querySelector("#hat");
+
+	let angle = 0;
+	let lastTime = null;
+	function animate(time) {
+		if (lastTime != null) angle += (time - lastTime) * 0.001;
+		lastTime = time;
+		cat.style.top = (Math.sin(angle) * 40 + 40) + "px";
+		cat.style.left = (Math.cos(angle) * 200 + 230) + "px";
+		// Your extensions here.
+		hat.style.top = (-Math.sin(angle) * 40 + 40) + "px";
+		hat.style.left = (-Math.cos(angle) * 200 + 230) + "px";
+		requestAnimationFrame(animate);
+	}
+	requestAnimationFrame(animate);
+</script>
+
+<script>
+	// Or make the hat circle around the cat
+	let cat2 = document.querySelector("#cat2");
+	let hat2 = document.querySelector("#hat2");
+	function animateAlternate(time) {
+		if (lastTime != null) angle += (time - lastTime) * 0.001;
+		lastTime = time;
+		hat2.style.top = (Math.sin(angle) * 100 + 280) + "px";
+		hat2.style.left = (Math.cos(angle) * 100 + 300) + "px";
+		requestAnimationFrame(animateAlternate);
+	}
+	requestAnimationFrame(animateAlternate);
+</script>
