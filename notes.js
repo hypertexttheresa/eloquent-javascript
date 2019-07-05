@@ -121,3 +121,9 @@ H14 DOM
 
 Node list returned by `getElementsByTagName` is _live_ - if you want a solid collection of nodes, you can convert the collection to a real array by calling `Array.from`
 */
+
+/*H15 Event listeners
+For most event types, handlers registered on nodes with children will also receive events that happen in the children.
+At any point, an event handler can call the stopPropagation method on the event object to prevent handlers further up from receiving the event.
+
+*/
