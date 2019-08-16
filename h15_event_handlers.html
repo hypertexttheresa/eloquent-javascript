@@ -1,0 +1,133 @@
+/* Write a page that displays a balloon (using the balloon emoji, 🎈). When you press the up arrow, it should inflate
+(grow) 10 percent, and when you press the down arrow, it should deflate (shrink) 10 percent.
+
+https://eloquentjavascript.net/15_event.html#i_ZPJB9UFdQA
+*/
+
+<p id="balloon">🎈</p>
+<script>
+var balloon = document.getElementById('balloon');
+var fontSize = 10;
+balloon.style.fontSize = fontSize + 'px';
+document.addEventListener('keydown', adjustBalloon);
+
+function adjustBalloon(event) {
+	if (event.key === 'ArrowUp') {
+		event.preventDefault();
+		fontSize = 1.1 * fontSize;
+		if (fontSize > 50) {
+			balloon.innerText = '💥';
+			document.removeEventListener('keydown', adjustBalloon);
+			return;
+		}
+	}
+	if (event.key === 'ArrowDown') {
+		event.preventDefault();
+		fontSize = 0.9 * fontSize;
+	}
+	balloon.style.fontSize = fontSize + 'px';
+}
+
+/*
+* Implement a mouse trail
+* https://eloquentjavascript.net/15_event.html#i_NOgRH0Y9st
+*/
+<style>
+	.trail { /* className for the trail elements */
+		position: absolute;
+		height: 6px; width: 6px;
+		border-radius: 3px;
+		background: teal;
+	}
+body {
+	height: 300px;
+	}
+</style>
+
+<script>
+	let dotList = [];
+	let moveCounter = 0;
+	for (i = 0; i < 10; i++) {
+		dotList[i] = document.createElement('div');
+		dotList[i].id = 'dot' + i;
+		dotList[i].classList.add('trail');
+		document.body.appendChild(dotList[i]);
+	}
+	document.addEventListener('mousemove', function(event) {
+		document.getElementById('dot' + moveCounter).style.left = event.clientX + 'px';
+		document.getElementById('dot' + moveCounter).style.top = event.clientY + 'px';
+		moveCounter = (moveCounter + 1) % dotList.length;
+	});
+</script>
+
+/*
+* In this exercise you must implement a simple tabbed interface.
+* https://eloquentjavascript.net/15_event.html#i_ZPJB9UFdQA
+*/
+
+<script>
+  function asTabs(node) {
+    let selected = 0;
+    let tabList = Array.from(node.children);
+    let buttonList = [];
+    for (let tab of tabList) {
+		let button = document.createElement('button');
+		button.innerText = tab.innerText;
+      	button.setAttribute('tabname', tab.getAttribute('data-tabname'));
+      	buttonList.push(button);
+        button.addEventListener('click', function(event) {
+          changeTabs(event, tabList, buttonList);
+        });
+		node.insertBefore(button, tabList[0]);
+      	if (tabList[0] !== tab) {
+      		tab.style.display = 'none';
+        }
+  	}
+  }
+
+  function changeTabs(event, tabList, buttonList) {
+    let clickedTab = event.target.getAttribute('tabname');
+    for (let childNode of tabList) {
+       childNode.style.display = 'none';
+      if (clickedTab === childNode.getAttribute('data-tabname')) {
+        childNode.style.display = 'block';
+      }
+    }
+    for (let button of buttonList) {
+      button.style.backgroundColor = '#4CAF50';
+      if (clickedTab == button.getAttribute('tabname')) {
+        button.style.backgroundColor = '#ECAF50';
+      }
+    }
+
+  }
+
+asTabs(document.querySelector("tab-panel"));
+</script>
+
+<style>
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button:hover {
+    background-color: #ECAF50;
+}
+
+ div {
+   padding: 1em;
+  }
+</style>
+
+<tab-panel>
+	<div data-tabname="one">Tab one</div>
+	<div data-tabname="two">Tab two</div>
+	<div data-tabname="three">Tab three</div>
+</tab-panel>
