@@ -81,15 +81,42 @@ class GameOfLife {
 	}
 
 	calculateNewMatrix(matrix) {
+		let originalMatrix = matrix;
 		for (let i = 0; i < this.size; i += 1) {
 			for (let j = 0; j < this.size; j += 1) {
-				let neighbours = this.checkAmountOfNeighbours(matrix, i, j);
-				if (matrix[i][j] && (neighbours < 1 || neighbours > 3)) {
+				let neighbours = this.checkAmountOfNeighbours(originalMatrix, i, j);
+				if (matrix[i][j] == true && (neighbours < 2 || neighbours > 3)) {
 					matrix[i][j] = 0;
 				}
 				if (!matrix[i][j] && neighbours === 3) {
 					matrix[i][j] = 1;
 				}
+			}
+		}
+
+		return matrix;
+	}
+
+	getMatrixFromCheckBoxes() {
+		let checkboxes = document.querySelectorAll('input[type=checkbox]');
+		let matrix = [];
+		for (let i = 0; i < this.size; i += 1) {
+			let row = [];
+			for (let j = 0; j < this.size; j += 1) {
+				let cell = 0;
+				row.push(cell)
+			}
+			matrix.push(row);
+		}
+
+		let i = 0;
+		let j = 0;
+		for (let checkbox of checkboxes) {
+			matrix[i][j] = checkbox.checked;
+			j += 1;
+			if (j % this.size === 0) {
+				j = 0;
+				i += 1;
 			}
 		}
 
