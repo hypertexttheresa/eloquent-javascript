@@ -33,19 +33,22 @@ let runCode = function (event) {
 
 
 class GameOfLife {
-	constructor(size = 5) {
+	constructor(size = 5, randomStartMatrix = true) {
 		this.size = size;
-		this.matrix = this.getStartMatrix(size);
-		this.getMatrixAsCheckBoxes();
+		let matrix = this.getStartMatrix(size, randomStartMatrix);
+		this.setMatrixAsCheckBoxes(matrix);
 		document.querySelector('#next').addEventListener('click', this.nextGeneration.bind(this));
 	}
 
-	getStartMatrix(size) {
+	getStartMatrix(size, random) {
 		let matrix = [];
 		for (let i = 0; i < size; i += 1) {
 			let row = [];
 			for (let j = 0; j < size; j += 1) {
-				let cell = Math.round(Math.random());
+				let cell = Math.random() >= 0.5;
+				if (!random) {
+					cell = false;
+				}
 				row.push(cell)
 			}
 			matrix.push(row);
@@ -54,17 +57,17 @@ class GameOfLife {
 		return matrix;
 	}
 
-	getMatrixAsCheckBoxes() {
+	setMatrixAsCheckBoxes(matrix) {
 		let grid = document.querySelector('#grid');
 		grid.innerHTML = '';
 		let table = document.createElement('table');
-		for (let row of this.matrix) {
+		for (let row of matrix) {
 			let tableRow = document.createElement('tr');
-			for (let column of row) {
+			for (let cell of row) {
 				let tableCell = document.createElement('td');
 				let checkbox = document.createElement('input');
 				checkbox.type = 'checkbox';
-				checkbox.checked = column;
+				checkbox.checked = cell;
 				tableCell.appendChild(checkbox);
 				tableRow.appendChild(tableCell);
 			}
@@ -75,26 +78,9 @@ class GameOfLife {
 
 	nextGeneration() {
 		let matrix = this.getMatrixFromCheckBoxes();
-		this.matrix = this.calculateNewMatrix(matrix);
+		let newMatrix = this.calculateNewMatrix(matrix);
 
-		this.getMatrixAsCheckBoxes();
-	}
-
-	calculateNewMatrix(matrix) {
-		let originalMatrix = matrix;
-		for (let i = 0; i < this.size; i += 1) {
-			for (let j = 0; j < this.size; j += 1) {
-				let neighbours = this.checkAmountOfNeighbours(originalMatrix, i, j);
-				if (matrix[i][j] == true && (neighbours < 2 || neighbours > 3)) {
-					matrix[i][j] = 0;
-				}
-				if (!matrix[i][j] && neighbours === 3) {
-					matrix[i][j] = 1;
-				}
-			}
-		}
-
-		return matrix;
+		this.setMatrixAsCheckBoxes(newMatrix);
 	}
 
 	getMatrixFromCheckBoxes() {
@@ -123,24 +109,35 @@ class GameOfLife {
 		return matrix;
 	}
 
-	checkAmountOfNeighbours(matrix, y, x) {
-		let neighbours = 0;
-		for (let i = -1; i < 2; i += 1) {
-			for (let j = -1; j < 2; j += 1) {
-				y = y + i;
-				x = x + j;
-				if (i === j && i === 0) {
-					if (x < 0 || y < 0) {
-						continue;
-					}
+	calculateNewMatrix(matrix) {
+		let originalMatrix = matrix.slice();
+		let newMatrix = [];
+		for (let i = 0; i < this.size; i += 1) {
+			let newRow = [];
+			for (let j = 0; j < this.size; j += 1) {
+				let newCell = originalMatrix[i][j];
+				let neighbours = this.checkAmountOfNeighbours(originalMatrix, i, j);
+				if (newCell && (neighbours < 2 || neighbours > 3)) {
+					newCell = false;
+				}
+				if (!newCell && neighbours === 3) {
+					newCell = true;
 				}
 
-				// TO DO
-
+				newRow.push(newCell);
 			}
+			newMatrix.push(newRow)
 		}
 
+		return newMatrix;
+	}
+
+	checkAmountOfNeighbours(matrix, coordY, coordX) {
+		let neighbours = 4;
+
+
 		return neighbours;
+
 	}
 }
 
